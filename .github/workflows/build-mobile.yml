@@ -51,6 +51,7 @@ jobs:
       - name: Build
         env:
           MY_ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+          LDFLAGS: "-Wl,-z,max-page-size=16384"
         run: |
           ./tools/android_build.sh $MY_ANDROID_NDK_HOME $ANDROID_TARGET_SDK_VERSION $TARGET_ARCH
           rm -rf ./out_android/libnode
